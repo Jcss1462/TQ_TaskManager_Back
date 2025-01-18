@@ -36,6 +36,7 @@ builder.Services.AddDbContext<TQContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("tqBd")));
 
 builder.Services.AddScoped<IRolService, RolService>();
+builder.Services.AddScoped<IEstadoService, EstadoService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ISecurityService, SecurityService>();
 builder.Services.AddScoped<IAuthService, AuthService>();

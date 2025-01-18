@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using TQ_TaskManager_Back.Dtos;
-using TQ_TaskManager_Back.Models;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TQ_TaskManager_Back.Services;
 
 namespace TQ_TaskManager_Back.Controllers;
@@ -10,33 +9,18 @@ namespace TQ_TaskManager_Back.Controllers;
 public class UserController : ControllerBase
 {
     IUserService _userService;
-    IAuthService _authService;
 
-    public UserController(IUserService userService, IAuthService authService)
+    public UserController(IUserService userService)
     {
         _userService = userService;
-        _authService = authService;
     }
 
-    [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] RegisterRequestDto user)
+
+    [HttpGet("getAllUsers")]
+    public async Task<IActionResult> GetAllUsers()
     {
-        await _userService.RegisterUserAsync(user);
-        return Ok();
+        return Ok(await _userService.GetListOfUsers());
     }
 
-    [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
-    {
 
-        if (!await _userService.AuthenticateAsync(request))
-        {
-            throw new Exception("Usuario o contraseña incorrectas");
-        }
-
-        Usuario usuario = await _userService.GetUsuarioByEmail(request.Email);
-
-        var token = _authService.GenerateJwtToken(request.Email, usuario.Id, usuario.Rolid);
-        return Ok(new { token });
-    }
 }

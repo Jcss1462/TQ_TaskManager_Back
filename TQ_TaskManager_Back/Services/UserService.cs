@@ -27,6 +27,20 @@ public class UserService : IUserService
         return await Task.FromResult(usuario != null);
     }
 
+    public Task<List<UsuarioDto>> GetListOfUsers()
+    {
+        return _context.Usuarios
+        .Select(u => new UsuarioDto
+        {
+            Id = u.Id,
+            Nombre = u.Nombre,
+            Correo = u.Correo,
+            Rolid=u.Rolid,
+            RolDescription= u.Rol.Nombre 
+        })
+        .ToListAsync();
+    }
+
     public async Task<Usuario> GetUsuarioByEmail(string email)
     {
 
@@ -92,5 +106,6 @@ public interface IUserService
     Task<bool> AuthenticateAsync(LoginRequestDto loginRequest);
     Task<bool> UserExistsAsync(string email);
     Task<Usuario> GetUsuarioByEmail(string email);
+    Task<List<UsuarioDto>> GetListOfUsers();
 
 }

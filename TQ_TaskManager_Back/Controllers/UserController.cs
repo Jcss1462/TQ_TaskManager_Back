@@ -17,6 +17,7 @@ public class UserController : ControllerBase
 
 
     [HttpGet("getAllUsers")]
+    [Authorize]
     public async Task<IActionResult> GetAllUsers()
     {
         return Ok(await _userService.GetListOfUsers());

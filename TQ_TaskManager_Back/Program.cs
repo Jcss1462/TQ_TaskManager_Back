@@ -39,6 +39,7 @@ builder.Services.AddScoped<IRolService, RolService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ISecurityService, SecurityService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

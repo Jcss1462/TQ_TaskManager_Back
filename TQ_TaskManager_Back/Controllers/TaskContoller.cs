@@ -17,7 +17,7 @@ public class TaskContoller : ControllerBase
     }
 
     [HttpPost("createTask")]
-    //[Authorize]
+    [Authorize]
     public async Task<IActionResult> CreateTask([FromBody] CreateTareaDto createTareaDto)
     {
         await _taskService.CreateTask(createTareaDto);
@@ -26,7 +26,7 @@ public class TaskContoller : ControllerBase
 
 
     [HttpPut("upadateTask")]
-    //[Authorize]
+    [Authorize]
     public async Task<IActionResult> UpdateTask([FromBody] UpdateTareaDto updateTareaDto)
     {
         await _taskService.UpdateTask(updateTareaDto);
@@ -35,7 +35,7 @@ public class TaskContoller : ControllerBase
 
 
     [HttpDelete("deleteTask/{id}")]
-    //[Authorize]
+    [Authorize]
     public async Task<IActionResult> DeleteTask(int id)
     {
         await _taskService.DeleteTask(id);
@@ -44,7 +44,7 @@ public class TaskContoller : ControllerBase
 
 
     [HttpGet("getTaskById/{id}")]
-    //[Authorize]
+    [Authorize]
     public async Task<IActionResult> GetTaskById(int id)
     {
         return Ok(await _taskService.GetTaskById(id));
@@ -52,7 +52,7 @@ public class TaskContoller : ControllerBase
 
 
     [HttpGet("getTaskListByUserId/{id}")]
-    //[Authorize]
+    [Authorize]
     public async Task<IActionResult> GetTaskListByUserId(int id)
     {
         return Ok(await _taskService.GetTaskListByUserId(id));
@@ -60,7 +60,7 @@ public class TaskContoller : ControllerBase
 
 
     [HttpGet("getListAllTasks")]
-    //[Authorize]
+    [Authorize]
     public async Task<IActionResult> GetListAllTasks()
     {
         return Ok(await _taskService.GetListAllTasks());

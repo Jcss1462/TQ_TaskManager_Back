@@ -17,6 +17,7 @@ public class RolController : ControllerBase
 
 
     [HttpGet("getAllRols")]
+    [Authorize]
     public async Task<IActionResult> GetAllRols()
     {
         return Ok(await _rolService.GetAllRols());

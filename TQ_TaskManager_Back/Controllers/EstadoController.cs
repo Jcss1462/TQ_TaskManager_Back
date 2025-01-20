@@ -17,6 +17,7 @@ public class EstadoController : ControllerBase
 
 
     [HttpGet("getAllEstados")]
+    [Authorize]
     public async Task<IActionResult> GetAllEstados()
     {
         return Ok(await _estadoService.GetAllEstados());
